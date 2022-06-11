@@ -1,0 +1,20 @@
+spring:
+  h2:
+    console.enabled: false
+  config:
+    activate:
+      on-profile: compose
+  datasource:
+    url: ${ONTOLOGY_MYSQL_DATASOURCE_URL}
+    username: ${ONTOLOGY_MYSQL_DATASOURCE_USERNAME}
+    password: ${ONTOLOGY_MYSQL_DATASOURCE_PASSWORD}
+    driver-class-name: ${ONTOLOGY_MYSQL_DATASOURCE_DRIVER}
+  jpa:
+    database-platform: ${ONTOLOGY_MYSQL_DATABASE_PLATFORM}
+    hibernate:
+      ddl-auto: ${ONTOLOGY_MYSQL_JPA_HIBERNATE_DDL_AUTO}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://kgt-registry:8762/eureka/

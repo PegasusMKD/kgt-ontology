@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "kgt.ontology.dataset.filename",
+      "type": "java.lang.String",
+      "description": "File name of the dataset we want to use for the instance."
+    },
+    {
+      "name": "kgt.ontology.dataset.checksum.strategy",
+      "type": "java.lang.String",
+      "description": "Which Digest strategy we'd like to use. The options can be found in MessageDigestAlgorithm."
+    }
+  ]
+}

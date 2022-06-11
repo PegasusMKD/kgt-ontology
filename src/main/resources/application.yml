@@ -1,0 +1,45 @@
+server:
+  port: 8101
+
+
+kgt:
+  ontology:
+    dataset:
+      filename: data/what_to_make.owl
+      checksum:
+        strategy: SHA-256
+
+spring:
+  h2:
+    console.enabled: true
+  application:
+    name: kgt-ontology
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/kgt_ontology
+    driver-class-name: org.postgresql.Driver
+    username: kgt
+    password: kgt
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: kgt-gateway
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8762/eureka/
