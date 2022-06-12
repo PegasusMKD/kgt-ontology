@@ -17,6 +17,9 @@ data class Triplet(
     @Column(name = "subject")
     var subject: String? = null,
 
+    @Column(name = "subjectURI")
+    var subjectURI: String? = null,
+
     @Column(name = "predicate")
     var predicate: String? = null,
 
