@@ -3,10 +3,7 @@ package finki.ukim.kgt.kgtontology.models
 import finki.ukim.kgt.kgtontology.utility.enums.MessageDigestAlgorithm
 import org.hibernate.annotations.GenericGenerator
 import java.time.LocalDate
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 data class Dataset(
@@ -29,6 +26,7 @@ data class Dataset(
     @Column(name = "recordCount")
     private val recordCount: Int? = null,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "hashAlgorithm")
     private val hashAlgorithm: MessageDigestAlgorithm? = null
 )

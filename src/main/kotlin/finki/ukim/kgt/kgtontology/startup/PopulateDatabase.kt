@@ -1,5 +1,6 @@
 package finki.ukim.kgt.kgtontology.startup
 
+import finki.ukim.kgt.kgtontology.main
 import finki.ukim.kgt.kgtontology.models.Dataset
 import finki.ukim.kgt.kgtontology.repositories.DatasetRepository
 import finki.ukim.kgt.kgtontology.services.TripletService
@@ -60,9 +61,17 @@ class PopulateDatabase(
             "RDF/XML"
         )
 
+        val fideoModel = ModelFactory.createOntologyModel()
+        val fideoFile = resourceLoader.getResource("classpath:data/fideo.owl")
+        fideoModel.read(
+            fideoFile.inputStream,
+            "RDF/XML"
+        )
+
+        mainModel.addSubModel(fideoModel)
+
         // Transform data into models
-        val graph = mainModel.graph
-        val triplets = jenaUtils.cleansingTriplets(graph)
+        val triplets = jenaUtils.cleanseModel(mainModel)
 
         // Filter data that we only take useful items
         // TODO: Add filter
