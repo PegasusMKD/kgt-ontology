@@ -5,7 +5,9 @@ server:
 kgt:
   ontology:
     dataset:
-      filename: data/what_to_make.owl
+      filename: data/what_to_make_ind.owl
+      sub-models:
+        location: data/sub-models
       checksum:
         strategy: SHA-256
 

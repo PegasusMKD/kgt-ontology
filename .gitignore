@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### Reference models ###
+src/main/resources/data/reference-models/**

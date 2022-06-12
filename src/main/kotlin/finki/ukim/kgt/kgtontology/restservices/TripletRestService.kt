@@ -1,5 +1,6 @@
 package finki.ukim.kgt.kgtontology.restservices
 
+import com.querydsl.core.types.Predicate
 import finki.ukim.kgt.kgtontology.dtos.TripletDto
 import finki.ukim.kgt.kgtontology.mappers.TripletMapper
 import finki.ukim.kgt.kgtontology.services.TripletService
@@ -11,8 +12,8 @@ class TripletRestService(
     private val tripletMapper: TripletMapper
 ) {
 
-    fun findAll(): List<TripletDto> {
-        return tripletService.findAll().map(tripletMapper::toDto)
+    fun findAll(predicate: Predicate): List<TripletDto> {
+        return tripletService.findAll(predicate).map(tripletMapper::toDto)
     }
 
 }

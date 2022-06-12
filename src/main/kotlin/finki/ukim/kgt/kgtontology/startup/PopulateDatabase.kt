@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.io.ResourceLoader
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component
+import java.io.File
 import java.time.LocalDate
 import javax.annotation.PostConstruct
 
@@ -25,6 +26,9 @@ class PopulateDatabase(
 
     @Value("\${kgt.ontology.dataset.filename}")
     private lateinit var fileName: String
+
+    @Value("\${kgt.ontology.dataset.sub-models.location}")
+    private lateinit var subModelsLocation: String
 
     @Value("\${kgt.ontology.dataset.checksum.strategy:SHA-256}")
     private lateinit var checkSumStrategy: String
@@ -60,9 +64,21 @@ class PopulateDatabase(
             "RDF/XML"
         )
 
+        resourceLoader.getResource("classpath:$subModelsLocation/.").file.walk().forEach {
+            if(it.isDirectory)
+                return@forEach
+
+            val subModel = ModelFactory.createOntologyModel()
+            subModel.read(
+                it.inputStream(),
+                "RDF/XML"
+            )
+
+            mainModel.add(subModel)
+        }
+
         // Transform data into models
-        val graph = mainModel.graph
-        val triplets = jenaUtils.cleansingTriplets(graph)
+        val triplets = jenaUtils.cleanseModel(mainModel)
 
         // Filter data that we only take useful items
         // TODO: Add filter
