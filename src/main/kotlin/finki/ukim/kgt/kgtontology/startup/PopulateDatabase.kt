@@ -1,5 +1,6 @@
 package finki.ukim.kgt.kgtontology.startup
 
+import finki.ukim.kgt.kgtontology.main
 import finki.ukim.kgt.kgtontology.models.Dataset
 import finki.ukim.kgt.kgtontology.repositories.DatasetRepository
 import finki.ukim.kgt.kgtontology.services.TripletService
