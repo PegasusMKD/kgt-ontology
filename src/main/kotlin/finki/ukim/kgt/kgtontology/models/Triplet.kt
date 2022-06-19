@@ -1,10 +1,7 @@
 package finki.ukim.kgt.kgtontology.models
 
 import org.hibernate.annotations.GenericGenerator
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 data class Triplet(
@@ -24,5 +21,10 @@ data class Triplet(
     var predicate: String? = null,
 
     @Column(name = "object")
-    var `object`: String? = null
+    var objectVarChar: String? = null,
+
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "objectText", columnDefinition = "TEXT")
+    var objectText: String? = null
+
 )

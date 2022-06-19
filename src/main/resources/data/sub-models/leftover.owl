@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY linkml "https://w3id.org/linkml/" >
+    <!ENTITY terms "http://purl.org/dc/terms/" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY obo "http://purl.obolibrary.org/obo/" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY oboInOwl "http://www.geneontology.org/formats/oboInOwl#" >
+    <!ENTITY odes_field "http://purl.obolibrary.org/obo/genepio/imports/odes_field.owl#" >
+    <!ENTITY temp_import "http://purl.obolibrary.org/obo/genepio/imports/temp_import.owl#" >
+]>
+
+
+<rdf:RDF xmlns="&obo;genepio.owl#"
+     xml:base="&obo;genepio.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:linkml="https://w3id.org/linkml/"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+     xmlns:odes_field="&obo;genepio/imports/odes_field.owl#"
+     xmlns:temp_import="&obo;genepio/imports/temp_import.owl#">
+
+ <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0000001 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0000001">
+        <rdfs:label xml:lang="en">metadata section</rdfs:label>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0000004 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0000004">
+        <rdfs:label xml:lang="en">term as in existing standard</rdfs:label>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0000005 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0000005">
+        <rdfs:label xml:lang="en">term source</rdfs:label>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0000006 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0000006">
+        <obo:IAO_0000115 xml:lang="en">The user interface label is the label that should be placed on a datum when presented on a form or report</obo:IAO_0000115>
+        <obo:IAO_0000117>Damion Dooley</obo:IAO_0000117>
+        <rdfs:label xml:lang="en">user interface label</rdfs:label>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0000162 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0000162">
+        <rdfs:label xml:lang="en">user interface definition</rdfs:label>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0001745 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0001745">
+        <obo:IAO_0000115 xml:lang="en">A user interface help annotation is a textual phrase to display with an entity on a form or report that provides some detail about what the entity is or how it is being used.</obo:IAO_0000115>
+        <obo:IAO_0000117>Damion Dooley</obo:IAO_0000117>
+        <rdfs:label xml:lang="en">user interface help</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0001746 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0001746">
+        <obo:IAO_0000117>Damion Dooley</obo:IAO_0000117>
+        <obo:IAO_0000231 rdf:resource="&obo;IAO_0000103"/>
+        <rdfs:label xml:lang="en">user interface hidden</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0001763 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0001763">
+        <obo:IAO_0000115 xml:lang="en">A user interface feature is a pre-set list of features and their acceptable values that a user interface rendering system should use to display an entity on a form or report</obo:IAO_0000115>
+        <obo:IAO_0000117>Damion Dooley</obo:IAO_0000117>
+        <rdfs:label xml:lang="en">user interface feature</rdfs:label>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0001772 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0001772">
+        <obo:IAO_0000115 xml:lang="en">This annotation can be used to select the value specification that a referenced entity or specification component has for data entry.  Can be scalar value specification / categorical tree specification etc.</obo:IAO_0000115>
+        <obo:IAO_0000117>Damion Dooley</obo:IAO_0000117>
+        <rdfs:label xml:lang="en">obsolete: user interface value specification</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0001920 -->
+
+    <rdf:Description rdf:about="&obo;GENEPIO_0001920">
+        <obo:GENEPIO_0000006 xml:lang="en">UI regex normalize</obo:GENEPIO_0000006>
+        <obo:IAO_0000114 rdf:resource="&obo;IAO_0000428"/>
+        <obo:IAO_0000117>Damion Dooley</obo:IAO_0000117>
+        <rdfs:label xml:lang="en">user interface regular epression normalize</rdfs:label>
+    </rdf:Description>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_1919 -->
+
+    <rdf:Description rdf:about="&obo;GENEPIO_1919">
+        <obo:GENEPIO_0000006 xml:lang="en">UI regex validate</obo:GENEPIO_0000006>
+        <obo:IAO_0000114 rdf:resource="&obo;IAO_0000428"/>
+        <obo:IAO_0000117>Damion Dooley</obo:IAO_0000117>
+        <rdfs:label xml:lang="en">user interface regular expression validate</rdfs:label>
+    </rdf:Description>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_1921 -->
+
+    <rdf:Description rdf:about="&obo;GENEPIO_1921">
+        <obo:GENEPIO_0000006 xml:lang="en">UI regex format</obo:GENEPIO_0000006>
+        <obo:IAO_0000114 rdf:resource="&obo;IAO_0000428"/>
+        <obo:IAO_0000117>Damion Dooley</obo:IAO_0000117>
+        <rdfs:label xml:lang="en">user interface regular expression display format</rdfs:label>
+    </rdf:Description>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/genepio/imports/odes_field.owl#date -->
+
+    <owl:AnnotationProperty rdf:about="&obo;genepio/imports/odes_field.owl#date"/>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/genepio/imports/temp_import.owl#date -->
+
+    <owl:AnnotationProperty rdf:about="&obo;genepio/imports/temp_import.owl#date"/>
+
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="&dc;creator"/>
+
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="&dc;date"/>
+
+
+
+    <!-- http://purl.org/dc/terms/description -->
+
+    <owl:AnnotationProperty rdf:about="&terms;description"/>
+
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+    <owl:AnnotationProperty rdf:about="&terms;license"/>
+
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+    <owl:AnnotationProperty rdf:about="&terms;title"/>
+
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#default-namespace -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;default-namespace"/>
+
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasDbXref -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;hasDbXref"/>
+
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#comment -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;label">
+        <rdfs:label>label</rdfs:label>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#seeAlso -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;seeAlso">
+        <rdfs:label>see also</rdfs:label>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://www.w3.org/2002/07/owl#qualifiedCardinality -->
+
+    <owl:AnnotationProperty rdf:about="&owl;qualifiedCardinality"/>
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <!-- http://purl.obolibrary.org/obo/GENEPIO_0001772 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;GENEPIO_0001772">
+        <obo:IAO_0000115 xml:lang="en">This annotation can be used to select the value specification that a referenced entity or specification component has for data entry.  Can be scalar value specification / categorical tree specification etc.</obo:IAO_0000115>
+        <obo:IAO_0000117>Damion Dooley</obo:IAO_0000117>
+        <rdfs:label xml:lang="en">obsolete: user interface value specification</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:AnnotationProperty>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/DIDEO_00000053 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/DIDEO_00000053">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <obo:IAO_0000115 xml:lang="en">An information content entity that is used to support or refute an assertion.</obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">Mathias Brochhausen</obo:IAO_0000117>
+        <obo:IAO_0000119 xml:lang="en">&quot;Addressing PDDI Evidence Gaps&quot; Standards Development Group</obo:IAO_0000119>
+        <rdfs:label xml:lang="en">evidence information content entity</rdfs:label>
+    </owl:Class>
+
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0008150 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0008150">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <obo:IAO_0000115>A biological process represents a specific objective that the organism is genetically programmed to achieve. Biological processes are often described by their outcome or ending state, e.g., the biological process of cell division results in the creation of two daughter cells (a divided cell) from a single parent cell. A biological process is accomplished by a particular set of molecular functions carried out by specific gene products (or macromolecular complexes), often in a highly regulated manner and in a particular temporal sequence.</obo:IAO_0000115>
+        <obo:IAO_0000115>A process that emerges from two or more causally-connected macromolecular activities and has evolved to achieve a biological objective.</obo:IAO_0000115>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/cob.owl"/>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label xml:lang="en">biological process</rdfs:label>
+        <rdfs:label>biological_process</rdfs:label>
+    </owl:Class>
+
+
+</rdf:RDF>
