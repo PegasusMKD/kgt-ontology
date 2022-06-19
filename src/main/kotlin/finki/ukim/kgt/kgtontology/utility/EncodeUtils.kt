@@ -1,6 +1,6 @@
 package finki.ukim.kgt.kgtontology.utility
 
-object StringUtils {
+object EncodeUtils {
 
     /**
      * Used to build output as Hex

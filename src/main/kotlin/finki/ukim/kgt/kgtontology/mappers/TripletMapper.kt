@@ -13,6 +13,8 @@ abstract class TripletMapper {
     @Mapping(target = "object", ignore = true)
     abstract fun toDto(triplet: Triplet): TripletDto
 
+    @Mapping(target = "objectVarChar", ignore = true)
+    @Mapping(target = "objectText", ignore = true)
     abstract fun toEntity(triplet: TripletDto): Triplet
 
     @AfterMapping

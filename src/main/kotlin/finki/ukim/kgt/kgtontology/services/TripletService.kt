@@ -4,6 +4,8 @@ import com.querydsl.core.types.Predicate
 import finki.ukim.kgt.kgtontology.models.Triplet
 import finki.ukim.kgt.kgtontology.repositories.TripletRepository
 import org.slf4j.LoggerFactory
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
@@ -11,29 +13,29 @@ class TripletService(private val tripletRepository: TripletRepository) {
 
     private val logger = LoggerFactory.getLogger(TripletService::class.java)
 
-    fun findAll(predicate: Predicate): List<Triplet> {
-        val triplets = tripletRepository.findAll(predicate).toList()
-        val partitionedTriplets = triplets.partition { it.objectVarChar == null }
-        val bigTriplets = partitionedTriplets.first
-        val smallTriplets = partitionedTriplets.second
+    fun findAll(predicate: Predicate, pageable: Pageable): Page<Triplet> {
+        val tripletsPage = tripletRepository.findAll(predicate, pageable)
+        val bigTriplets = tripletsPage.content.filter { it.objectVarChar == null }
 
         if(bigTriplets.isEmpty()) {
-            optimizeObjectFetch(bigTriplets)
+            optimizeObjectFetch(bigTriplets, tripletsPage)
         }
 
-        return smallTriplets + bigTriplets
+        return tripletsPage
     }
 
-    private fun optimizeObjectFetch(bigTriplets: List<Triplet>) {
+    private fun optimizeObjectFetch(bigTriplets: List<Triplet>, tripletsPage: Page<Triplet>) {
         val ids = bigTriplets.map { it.id!! }.toList()
         val missingObjects = tripletRepository
             .findMissingObjects(ids)
             .associate { it.id to it.objectText }
-        bigTriplets.forEach { it.objectText = missingObjects[it.id] }
+
+        tripletsPage.content.forEach { it.objectText = missingObjects[it.id] }
     }
 
     fun saveAll(triplets: List<Triplet>?): Int {
-        return triplets?.let { tripletRepository.saveAllAndFlush(it).size } ?: throw RuntimeException("Triplet issues.")
+        return triplets?.let { tripletRepository.saveAllAndFlush(it).size } ?:
+        throw RuntimeException("Triplet issues.")
     }
 
     fun saveAllFallback(triplets: List<Triplet>?): Int {
