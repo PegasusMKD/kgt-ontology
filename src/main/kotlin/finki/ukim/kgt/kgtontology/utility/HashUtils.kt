@@ -1,6 +1,6 @@
 package finki.ukim.kgt.kgtontology.utility
 
-import finki.ukim.kgt.kgtontology.utility.StringUtils.encodeHex
+import finki.ukim.kgt.kgtontology.utility.EncodeUtils.encodeHex
 import org.springframework.core.io.Resource
 import org.springframework.core.io.ResourceLoader
 import org.springframework.stereotype.Component
