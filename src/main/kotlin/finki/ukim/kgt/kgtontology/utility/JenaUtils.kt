@@ -53,17 +53,26 @@ class JenaUtils {
         return triples.filter { it.predicate.localName != "label" && !it.`object`.isBlank }.map {
             val splitPredicate = splitHelper(it.predicate.localName, "[/#]")
             val cleansedObject = cleanObject(it.getObject())
+            var objectVarChar: String? = splitHelper(
+                cleansedObject.toString(), "[/#]"
+            )
+            var objectText: String? = null
+            if (objectVarChar?.length!! > 255) {
+                objectText = objectVarChar
+                objectVarChar = null
+            }
+
             val actualLabel =
                 if (label?.`object`?.literalValue == null) it.subject.toString()
                 else label.`object`?.literalValue.toString()
+            
             Triplet(
                 null,
                 actualLabel,
                 splitHelper(it.subject.toString(), "[/#]"),
                 cleanPredicate(splitPredicate),
-                splitHelper(
-                    cleansedObject.toString(), "[/#]"
-                )
+                objectVarChar,
+                objectText
             )
         }
     }
