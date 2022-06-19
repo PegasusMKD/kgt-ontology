@@ -26,9 +26,7 @@ interface TripletRepository : JpaRepository<Triplet, String>,
 
     override fun customize(bindings: QuerydslBindings, root: QTriplet) {
         bindings.bind(String::class.java).first { path: StringPath, value: String? ->
-            path.containsIgnoreCase(
-                value
-            )
+            path.eq(value)
         }
     }
 
