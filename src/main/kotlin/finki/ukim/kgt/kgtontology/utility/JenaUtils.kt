@@ -25,7 +25,7 @@ class JenaUtils {
         //      Transfer transformed data to another set of triplets
         //  After iterating entire set, return newly created set of triplets
         val graph = model.graph
-        val result = mutableSetOf<Triplet>()
+        var result = mutableSetOf<Triplet>()
         model.listSubjects().asSequence().toSet().stream().forEachOrdered { subject ->
             // If it isn't a URI, it's most probably an
             // "internal" subject,
@@ -42,7 +42,33 @@ class JenaUtils {
             result.addAll(items)
         }
 
+        result = makeReadableObject(result).toMutableSet()
+        result = makeReadablePredicate(result)
+
         return result.toList()
+    }
+
+    private fun makeReadablePredicate(result: MutableSet<Triplet>): MutableSet<Triplet> {
+        val nonUrlTripletsMap = result.associate { it.subjectURI?.split("/")?.last() to it.subject }
+        result.forEach { it.predicate = nonUrlTripletsMap[it.predicate] ?: it.predicate }
+        return result
+    }
+
+    private fun makeReadableObject(result: MutableSet<Triplet>): List<Triplet> {
+        val urlPartitionedTriplets = result.partition {
+            it.objectVarChar != null && (
+                    it.objectVarChar!!.startsWith("http://") ||
+                            it.objectVarChar!!.startsWith("https://")
+                    )
+        }
+
+        val urlTriplets = urlPartitionedTriplets.first
+        val nonUrlTriplets = urlPartitionedTriplets.second
+        val nonUrlTripletsMap = result.associate { it.subjectURI to it.subject }
+
+        urlTriplets.forEach { it.objectVarChar = nonUrlTripletsMap[it.objectVarChar] ?: it.objectVarChar }
+
+        return urlTriplets + nonUrlTriplets
     }
 
     fun updateWithLabel(graph: Graph, subject: String): Collection<Triplet> {
@@ -50,31 +76,38 @@ class JenaUtils {
             createMatch(NodeFactory.createURI(subject), null, null)
         ).asSequence().toSet()
         val label = triples.find { it.predicate.localName == "label" }
-        return triples.filter { it.predicate.localName != "label" && !it.`object`.isBlank }.map {
-            val splitPredicate = splitHelper(it.predicate.localName, "[/#]")
-            val cleansedObject = cleanObject(it.getObject())
-            var objectVarChar: String? = splitHelper(
-                cleansedObject.toString(), "[/#]"
-            )
-            var objectText: String? = null
-            if (objectVarChar?.length!! > 255) {
-                objectText = objectVarChar
-                objectVarChar = null
-            }
+        return triples
+            .filter { it.predicate.localName != "label" && !it.`object`.isBlank }
+            .map { createTriplet(it, label) }
+    }
 
-            val actualLabel =
-                if (label?.`object`?.literalValue == null) it.subject.toString()
-                else label.`object`?.literalValue.toString()
-            
-            Triplet(
-                null,
-                actualLabel,
-                splitHelper(it.subject.toString(), "[/#]"),
-                cleanPredicate(splitPredicate),
-                objectVarChar,
-                objectText
-            )
+    private fun createTriplet(
+        it: Triple,
+        label: Triple?
+    ): Triplet {
+        val splitPredicate = splitHelper(it.predicate.localName, "[/#]")
+        val cleansedObject = cleanObject(it.getObject())
+        var objectVarChar: String? = splitHelper(
+            cleansedObject.toString(), "[/#]"
+        )
+        var objectText: String? = null
+        if (objectVarChar?.length!! > 255) {
+            objectText = objectVarChar
+            objectVarChar = null
         }
+
+        val actualLabel =
+            if (label?.`object`?.literalValue == null) it.subject.toString()
+            else label.`object`?.literalValue.toString()
+
+        return Triplet(
+            null,
+            actualLabel,
+            splitHelper(it.subject.toString(), "[/#]"),
+            cleanPredicate(splitPredicate),
+            objectVarChar,
+            objectText
+        )
     }
 
 
