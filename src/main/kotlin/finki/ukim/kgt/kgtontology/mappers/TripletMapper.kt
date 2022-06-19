@@ -16,7 +16,16 @@ abstract class TripletMapper {
     abstract fun toEntity(triplet: TripletDto): Triplet
 
     @AfterMapping
-    fun mapObject(triplet: Triplet, @MappingTarget dto: TripletDto) {
+    fun mapObjectDto(triplet: Triplet, @MappingTarget dto: TripletDto) {
         dto.`object` = triplet.objectVarChar ?: triplet.objectText
+    }
+
+    @AfterMapping
+    fun mapObjectEntity(@MappingTarget triplet: Triplet, dto: TripletDto) {
+        if (dto.`object`?.length!! > 255) {
+            triplet.objectText = dto.`object`
+        } else {
+            triplet.objectVarChar = dto.`object`
+        }
     }
 }
